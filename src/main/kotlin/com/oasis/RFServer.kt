@@ -17,7 +17,7 @@ class RFServer {
             b.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel::class.java)
                 .option(ChannelOption.SO_BACKLOG, 1024)
-                .childHandler(ChildChannelHandler())
+                .childHandler(ServerChannelHandler())
 
             // 绑定端口，同步等待成功
             val f = b.bind(port).sync()
