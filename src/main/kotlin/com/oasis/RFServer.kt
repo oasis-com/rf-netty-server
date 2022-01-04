@@ -4,6 +4,8 @@ import io.netty.bootstrap.ServerBootstrap
 import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import io.netty.handler.logging.LogLevel
+import io.netty.handler.logging.LoggingHandler
 
 class RFServer {
 
@@ -17,6 +19,7 @@ class RFServer {
             b.group(bossGroup, workGroup)
                 .channel(NioServerSocketChannel::class.java)
                 .option(ChannelOption.SO_BACKLOG, 1024)
+                .handler(LoggingHandler(LogLevel.INFO))
                 .childHandler(ServerChannelHandler())
 
             // 绑定端口，同步等待成功

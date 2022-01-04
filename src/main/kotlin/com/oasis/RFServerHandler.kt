@@ -5,7 +5,6 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 
-
 class RFServerHandler : ChannelInboundHandlerAdapter() {
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
@@ -25,6 +24,10 @@ class RFServerHandler : ChannelInboundHandlerAdapter() {
     override fun channelReadComplete(ctx: ChannelHandlerContext?) {
         //  将消息队列中的消息写入到SocketChannel中发送给对方
         ctx?.flush()
+    }
+
+    override fun channelInactive(ctx: ChannelHandlerContext) {
+        println("客户端断开链接" + ctx.channel().localAddress().toString())
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext?, cause: Throwable?) {
