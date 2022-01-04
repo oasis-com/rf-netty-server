@@ -10,8 +10,8 @@ class ProReqServerHandler : ChannelInboundHandlerAdapter() {
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         val req = msg as ProductReqOuterClass.ProductReq
 
-        if ("Tom" == req.userName) {
-            println("接收到客服端请求（ProductReq）， $req")
+        if (req.reqId == 1) {
+            println("接收到客服端请求（ProductReq）：\n， $req")
 
             ctx.writeAndFlush(proResp(req.reqId))
         }
