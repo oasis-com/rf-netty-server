@@ -1,6 +1,6 @@
 package com.oasis
 
-import com.oasis.protobuf.ProductReqOuterClass
+import com.oasis.protobuf.ProductReqProto
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.socket.SocketChannel
 import io.netty.handler.codec.protobuf.ProtobufDecoder
@@ -14,7 +14,7 @@ class ServerChannelHandler : ChannelInitializer<SocketChannel>() {
         // 用于半包处理
         ch.pipeline().addLast(ProtobufVarint32FrameDecoder())
         // ProtobufDecoder 解码器
-        ch.pipeline().addLast(ProtobufDecoder(ProductReqOuterClass.ProductReq.getDefaultInstance()))
+        ch.pipeline().addLast(ProtobufDecoder(ProductReqProto.ProductReq.getDefaultInstance()))
         ch.pipeline().addLast(ProtobufVarint32LengthFieldPrepender())
         ch.pipeline().addLast(ProtobufEncoder())
 //        ch.pipeline().addLast(RFServerHandler())
