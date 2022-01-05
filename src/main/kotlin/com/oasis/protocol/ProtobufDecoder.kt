@@ -1,12 +1,10 @@
 package com.oasis.protocol
 
 import com.oasis.protobuf.ProductReqProto
-import com.oasis.protobuf.ProtoMsg
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
-import java.lang.Exception
 
 class ProtobufDecoder : ByteToMessageDecoder() {
 
@@ -46,12 +44,12 @@ class ProtobufDecoder : ByteToMessageDecoder() {
             val msg = ProductReqProto.ProductReq.parseFrom(inByte)
 
             if (msg != null) {
-                // 获取业务消息头
+                // body
                 out.add(msg)
             }
 
         } catch (e: Exception) {
-            println("${ctx.channel().remoteAddress()} decode failed.");
+            println("${ctx.channel().remoteAddress()} decode failed.")
             e.printStackTrace()
         }
     }
