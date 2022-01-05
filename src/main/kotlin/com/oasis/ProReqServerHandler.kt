@@ -12,8 +12,13 @@ class ProReqServerHandler : ChannelInboundHandlerAdapter() {
         val req = msg as ProductReqProto.ProductReq
 
         if (req.reqId == 1) {
-            println("接收到客服端请求（ProductReq）：\n， $req")
+            println("接收到客户端请求（ProductReq）：\n， $req")
 
+            ctx.writeAndFlush(proResp(req.reqId))
+        }
+
+        if(req.reqId == 2){
+            println("接收到客户端请求：$req")
             ctx.writeAndFlush(proResp(req.reqId))
         }
     }
