@@ -4,10 +4,6 @@ import com.oasis.protobuf.ProductReqProto
 import com.oasis.protobuf.ProductRespProto
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
-import io.netty.util.internal.logging.Log4J2LoggerFactory
-import io.netty.util.internal.logging.Slf4JLoggerFactory
-import org.slf4j.LoggerFactory
-import java.util.logging.Logger
 
 class ProReqServerHandler : ChannelInboundHandlerAdapter() {
 //    private val logger = LoggerFactory.getLogger(ProductReqProto::class.java.simpleName)
