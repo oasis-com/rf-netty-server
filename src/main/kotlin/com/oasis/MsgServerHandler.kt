@@ -1,5 +1,6 @@
 package com.oasis
 
+import com.oasis.protobuf.ProductReqProto
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 
@@ -12,7 +13,9 @@ class MsgServerHandler : ChannelInboundHandlerAdapter() {
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         println("接收到客户端消息：msg: $msg")
 
-        ctx.writeAndFlush(msg)
+        if (msg is ProductReqProto.ProductReq) {
+            ctx.writeAndFlush(msg)
+        }
     }
 
     override fun channelInactive(ctx: ChannelHandlerContext) {
